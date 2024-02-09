@@ -1,4 +1,4 @@
-# UP_1
+# Unity_1_Shepel
 
 UnityProject_1
 Essentials of real-time 3D
