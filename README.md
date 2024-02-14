@@ -16,3 +16,5 @@ What was done:
 - Lose panel 
 - Win panel
 - Small other edits
+
+--Task 1 in folder "CodeFromFirstTask"--
