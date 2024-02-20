@@ -18,3 +18,12 @@ What was done:
 - Small other edits
 
 --Task 1 in folder "CodeFromFirstTask"--
+
+20.02.2024
+
+- Main menu
+- Backgrounsd music in main menu
+- Button click sound
+- Ball collision sound
+- Win sound
+- Lose sound
