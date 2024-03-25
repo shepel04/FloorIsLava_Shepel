@@ -1,49 +1,72 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BallController : MonoBehaviour
 {
-    public float speed = 1f;
-    private Rigidbody rb;
-    public float maxSpeed = 5f;
-    public GameObject losePanel, winPanel;
-    private bool isTouchingLava, isFinished;
+    public float Speed = 1f;
+    public float MaxSpeed = 5f;
+    public float JumpForce = 3f;
+    public GameObject LosePanel;
+    public GameObject WinPanel;
+    private Rigidbody _rb;
+    private bool _isTouchingLava, _isFinished, _isGrounded;
+    private Vector3 _playerVelocity;
+    private 
 
     void Start()
     {
-        losePanel.SetActive(false);
-        winPanel.SetActive(false);
-        isTouchingLava = false;
-        isFinished = false;
-        rb = GetComponent<Rigidbody>();        
+        LosePanel.SetActive(false);
+        WinPanel.SetActive(false);
+        _isTouchingLava = false;
+        _isFinished = false;
+        _rb = GetComponent<Rigidbody>();
+        _isGrounded = true;
     }
 
     void Update()
-    {
-        if (!isTouchingLava && !isFinished)
+    { 
+        
+        if (!_isTouchingLava && !_isFinished)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
             Vector3 movement = new Vector3(-verticalInput, 0f, horizontalInput);
-            rb.AddForce(movement * speed);
+            _rb.AddForce(movement * Speed);
 
             //speed limit
-            rb.velocity = new Vector3(
-                Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed),
-                rb.velocity.y,
-                Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
-        }        
+            _rb.velocity = new Vector3(
+                Mathf.Clamp(_rb.velocity.x, -MaxSpeed, MaxSpeed),
+                _rb.velocity.y,
+                Mathf.Clamp(_rb.velocity.z, -MaxSpeed, MaxSpeed));
+        }   
+        
+        if (_isGrounded && Input.GetButtonDown("Jump"))
+        {
+            _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
+        
+
+    }
+    
+    void OnCollisionStay(Collision collision)
+    {
+        _isGrounded = true;
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        _isGrounded = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Lava"))
         {
-            isTouchingLava = true;
+            _isTouchingLava = true;
         }
         if (other.CompareTag("Finish"))
         {
-            isTouchingLava = true;
+            _isTouchingLava = true;
         }
     }
 
