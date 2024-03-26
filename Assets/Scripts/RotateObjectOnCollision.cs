@@ -35,7 +35,7 @@ public class RotateObjectOnCollision : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Cup"))
         {

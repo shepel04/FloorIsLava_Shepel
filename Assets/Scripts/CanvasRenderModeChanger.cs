@@ -7,19 +7,24 @@ using UnityEngine.SceneManagement;
 
 public class CanvasRenderModeChanger : MonoBehaviour
 {
-    public GameObject BigCanvas;
+    public GameObject InstructionCanvas;
+    public GameObject PauseCanvas;
     
-    public void EnableBigCanvas()
+    public void EnableInstructionCanvas()
     {
-        BigCanvas.SetActive(true);
-
+        InstructionCanvas.SetActive(true);
+    }
+    public void EnablePauseCanvas()
+    {
+        PauseCanvas.SetActive(true);
     }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            BigCanvas.SetActive(false);
+            InstructionCanvas.SetActive(false);
+            PauseCanvas.SetActive(false);
         }
     }
 }

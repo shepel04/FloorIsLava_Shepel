@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public int SceneNumber;
-
-    public void LoadSelectedScene()
+    public void LoadSelectedScene(int sceneNumber)
     {
-        SceneManager.LoadScene(SceneNumber);
+        SceneManager.LoadScene(sceneNumber);
     }
 }
