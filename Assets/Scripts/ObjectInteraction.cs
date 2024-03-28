@@ -8,11 +8,11 @@ public class ObjectInteraction : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            //need to work
             if (objectToShow != null)
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 objectToShow.SetActive(true);
-
             }
         }
     }

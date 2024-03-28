@@ -25,6 +25,7 @@ public class CanvasRenderModeChanger : MonoBehaviour
         {
             InstructionCanvas.SetActive(false);
             PauseCanvas.SetActive(false);
+            Time.timeScale = 0f;
         }
     }
 }
