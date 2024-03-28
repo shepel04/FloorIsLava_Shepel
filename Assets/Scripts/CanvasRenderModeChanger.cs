@@ -21,11 +21,35 @@ public class CanvasRenderModeChanger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            InstructionCanvas.SetActive(false);
-            PauseCanvas.SetActive(false);
-            Time.timeScale = 0f;
+            EnableInstructionCanvas();
+        }
+
+    
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (InstructionCanvas.activeSelf)
+            {
+                InstructionCanvas.SetActive(false);
+            }
+            else
+            {
+                if (PauseCanvas.activeSelf)
+                {
+                    Time.timeScale = 1f;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    PauseCanvas.SetActive(false);
+                }
+                else
+                {
+                    EnablePauseCanvas();
+                    Time.timeScale = 0f;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+            }
         }
     }
 }

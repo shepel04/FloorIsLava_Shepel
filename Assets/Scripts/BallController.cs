@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public float Speed = 1f;
+    public float Speed = 7f;
     public float MaxSpeed = 5f;
     public float JumpForce = 3f;
+    public float SpeedMult = 2f;
     public GameObject LosePanel;
     public GameObject WinPanel;
     private Rigidbody _rb;
@@ -33,7 +34,7 @@ public class BallController : MonoBehaviour
 
             Vector3 movement = (cameraForward * verticalInput + Camera.main.transform.right * horizontalInput).normalized;
 
-            _rb.AddForce(movement * Speed);
+            _rb.AddForce(movement * Speed * SpeedMult * Time.deltaTime);
 
             // Speed limit
             _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, MaxSpeed);
@@ -63,6 +64,7 @@ public class BallController : MonoBehaviour
         }
         if (other.CompareTag("Finish"))
         {
+            _rb.velocity = Vector3.zero;
             _isTouchingLava = true;
         }
     }
