@@ -16,6 +16,7 @@ public class LavaCollisionHandler : MonoBehaviour
     {
         LavaParticles.Stop();
         _audioSource = GetComponent<AudioSource>();
+        _hasPlayed = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,7 +39,7 @@ public class LavaCollisionHandler : MonoBehaviour
 
             _hasPlayed = true;
 
-            Destroy(LavaParticles.gameObject, LavaParticles.main.duration);
+            //Destroy(LavaParticles.gameObject, LavaParticles.main.duration);
             Player.SetActive(false);
             GameUI.SetActive(false);
             
