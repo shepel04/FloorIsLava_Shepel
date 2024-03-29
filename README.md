@@ -2,7 +2,7 @@
 
 29.03.2024
 
-Final version 1.0
+Version 1.0
 
 Main info:
 
